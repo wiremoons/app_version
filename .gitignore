@@ -1,0 +1,20 @@
+# ingnore binary copies
+./app_version
+
+# macOS specific files
+.DS_Store
+
+# Editor configs
+.vscode/
+
+# IntelliJ / Webstorm
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# key files
+keys.*
+Keys.*
+key.*
+Key.*
