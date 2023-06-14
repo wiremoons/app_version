@@ -1,5 +1,5 @@
 # ingnore binary copies
-./app_version
+app_version
 
 # macOS specific files
 .DS_Store
