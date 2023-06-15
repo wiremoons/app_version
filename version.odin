@@ -27,6 +27,52 @@ load_package_VERSION := #load("VERSION", string) or_else ""
 //NOTE(Simon): assumes this package is in a sub directory one below ODIN_BUILD_PROJECT_NAME
 load_application_VERSION := #load("../VERSION", string) or_else ""
 
+/*
+		PUBLIC PROCEDURES
+*/
+
+// Build the version output using a string buffer constructed from the private procedures
+// in this package. Return a cloned string before the string buffer is destroyed.
+// Example output:
+//		'app_version' is version 'v0.1.0' built in 'Release' mode.
+//		Built on: 'Wed 14 Jun 2023 @ 21:19:50 BST' with Odin compiler: 'dev-2023-06'.
+//		Executing on computer 'borrmoons' with 'macOS Unknown (build 22F66, kernel 22.5.0)'.
+//		System information: [ RAM: 8192Gb | CPU: ARM64 | Cores: 8 ].
+
+version_string :: proc() -> string {
+	sb := strings.builder_make()
+	defer strings.builder_destroy(&sb)
+	strings.write_string(&sb, "\n'")
+	strings.write_string(&sb, application_name())
+	strings.write_string(&sb, "' is version '")
+	strings.write_string(&sb, application_version())
+	strings.write_string(&sb, "' built in '")
+	strings.write_string(&sb, build_kind())
+	strings.write_string(&sb, "' mode.\n")
+	strings.write_string(&sb, "Built on: '")
+	strings.write_string(&sb, BUILD_TIME)
+	strings.write_string(&sb, "' with Odin compiler: '")
+	strings.write_string(&sb, ODIN_VERSION)
+	strings.write_string(&sb, "'.\n")
+	strings.write_string(&sb, "Executing on computer '")
+	strings.write_string(&sb, hostname())
+	strings.write_string(&sb, "' with '")
+	strings.write_string(&sb, os_info())
+	strings.write_string(&sb, "'.\n")
+	strings.write_string(&sb, system_summary())
+	strings.write_string(&sb, ".\n")
+	return strings.clone(strings.to_string(sb))
+}
+
+// Print out a copy of the version string constructed by 'version_string' proc.
+version_show :: proc() {
+	fmt.print(version_string())
+}
+
+/*
+		PRIVATE PROCEDURES BELOW
+*/
+
 // Identify a application version to use.
 // Chosen in order of preference via the `switch` below as the first match will be used.
 // If there was no entries provided at compile time in the 'VERSION' file then use "UNKNOWN"
@@ -120,32 +166,4 @@ system_summary :: proc() -> string {
 	return strings.clone(strings.to_string(sb))
 }
 
-version_show :: proc() {
-	fmt.print(version_string())
-}
-
-version_string :: proc() -> string {
-	sb := strings.builder_make()
-	defer strings.builder_destroy(&sb)
-	strings.write_string(&sb, "\n'")
-	strings.write_string(&sb, application_name())
-	strings.write_string(&sb, "' is version '")
-	strings.write_string(&sb, application_version())
-	strings.write_string(&sb, "' built in '")
-	strings.write_string(&sb, build_kind())
-	strings.write_string(&sb, "' mode.\n")
-	strings.write_string(&sb, "Built on: '")
-	strings.write_string(&sb, BUILD_TIME)
-	strings.write_string(&sb, "' with Odin compiler: '")
-	strings.write_string(&sb, ODIN_VERSION)
-	strings.write_string(&sb, "'.\n")
-	strings.write_string(&sb, "Executing on computer '")
-	strings.write_string(&sb, hostname())
-	strings.write_string(&sb, "' with '")
-	strings.write_string(&sb, os_info())
-	strings.write_string(&sb, "'.\n")
-	strings.write_string(&sb, system_summary())
-	strings.write_string(&sb, ".\n")
-	return strings.clone(strings.to_string(sb))
-}
 
