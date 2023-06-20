@@ -165,5 +165,3 @@ system_summary :: proc() -> string {
 	strings.write_string(&sb, " ]")
 	return strings.clone(strings.to_string(sb))
 }
-
-
