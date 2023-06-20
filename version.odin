@@ -129,6 +129,8 @@ build_kind :: proc() -> string {
 }
 
 // Returns the computers hostname obtained from the environment variable 'HOSTNAME'
+// Checks if any hostname ends with '.local' and removes it - as occurs on macOS.
+// If the environment does not contain 'HOSTNAME' then return "UNKNOWN"
 @(private)
 hostname :: proc() -> string {
 	host_id, ok := os.lookup_env("HOSTNAME")
@@ -139,6 +141,7 @@ hostname :: proc() -> string {
 }
 
 // Returns a string built from various Odin system information procedures.
+// Include any GPU data if it also exists.
 @(private)
 system_summary :: proc() -> string {
 	sb := strings.builder_make()
