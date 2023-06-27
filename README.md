@@ -21,7 +21,7 @@ The instructions below assume you are already developing Odin programs, and have
 From a command prompt:
 
 1. Change directory if needed, to ensure you are in the root of your own *Odin* project
-2. Clone this *Odin* package: `git clone https://github.com/wiremoons/app_version.git`
+2. Either:  (1) add this *Odin* `app_version` package as a *Git* submodule to your own project: `git submodule add https://github.com/wiremoons/app_version.git app_version`  **OR**  (2) clone this *Odin* package directly into you own projects code structure: `git clone https://github.com/wiremoons/app_version.git`
 3. Update the text file named: `VERSION` in the `app_package` directory, or create your own `VERSION` file in the root of your own project. Add your current applications version, for example: `v1.2.5`. Any text of a reasonable size can be used as the version number for your application by adding it to this `VERSION` file on the first line.
 4. In you own *Odin* project source code import the `app_version` package: `import "app_version"`
 5. To display the version output for your application use the procedure: `app_version.version_show()`
