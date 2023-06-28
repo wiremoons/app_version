@@ -1,5 +1,5 @@
 # app_version
-Odin package to generate and display application version information.
+Odin package to generate and display application version information for command line applications.
 
 ## Example output
 
@@ -13,11 +13,11 @@ System information: [ RAM: 8192Gb | CPU: ARM64 | Cores: 8 ].
 
 ## How to include this package in your Odin project
 
-The inclusion of `app_version` in you own project is easily performed by just adding the code from this repo to you own project. The `app_version` code is a *Odin package* to be used by your main program. The recommended approach is to add `app_version` as a (Git submodule)[https://git-scm.com/book/en/v2/Git-Tools-Submodules]. The purpose of *submodules* is to let one project clone another different Git repository into that project, and still keep the commits separate.
+The inclusion of `app_version` in you own project is easily performed by just adding the code from this repo to you own project. The `app_version` code is a *Odin package* to be used by your main program. The recommended approach is to add `app_version` as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules). The purpose of *submodules* is to let one project clone another different Git repository into that project, and still keep the commits separate.
 
 This will give the flexibility to allow the *Git* commits for your own project to be separate from those in the `app_version` package. The `app_version` package can still be updated independently as needed with a `git pull` if required. The installation instructions below include the commands to add `app_version` as a *submodule* to you own project.
 
-The approach makes adding *Odin* packages to a existing project very simple and easy to manage. See the *Odin* (packages)[https://odin-lang.org/docs/overview/#packages] document for more details.
+The approach makes adding *Odin* packages to a existing project very simple and easy to manage. See the *Odin* [packages](https://odin-lang.org/docs/overview/#packages) document for more details.
 
 ## Installation
 
@@ -39,4 +39,4 @@ For additional help, see the `build.sh` and `main.odin` files included in the `a
 
 ## License
 
-The source code is provided with a *MIT* license, a copy of which is available here: (MIT License)[./LICENSE].
+The source code is provided with a *MIT* license, a copy of which is available here: [MIT License](./LICENSE).
