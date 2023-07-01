@@ -1,9 +1,9 @@
 {
-	version: "0.2.0",
-	description: "A CLI Odin package to display an applications version information.",
-	url: "https://github.com/wiremoons/app_version",
-	readme: "README.md",
-	license: "MIT",
-	keywords:["version","cli"],
-	dependencies: {}
+	"version": "0.2.0",
+	"description": "A CLI Odin package to display an applications version information.",
+	"url": "https://github.com/wiremoons/app_version",
+	"readme": "README.md",
+	"license": "MIT",
+	"keywords": ["version", "cli"],
+	"dependencies": {}
 }

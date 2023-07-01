@@ -1,3 +1,6 @@
+## v0.2.1
+- reformat 'mod.pkg' to valid JSON due to errors with 'opm' cli publish attempts.
+
 ## v0.2.0
 - add header info to 'main.odin' example usage file.
 - add addtional comments to 'main.odin' to help with example usage.
@@ -6,4 +9,4 @@
 - add '-strict-style' to 'build.sh' script.
 
 ## v0.1.0
- - Initial version created currently tested on macOS (arm64) and Linux aarch64 (RPi4).
+- Initial version created currently tested on macOS (arm64) and Linux aarch64 (RPi4).
