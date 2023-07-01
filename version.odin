@@ -4,6 +4,7 @@
 			Copyright (c) 2023 Simon Rowe.
 			MIT License.
 			Source code: https://github.com/wiremoons/app_version.git
+      Version: see projects 'VERSION' file.
 */
 
 package app_version
