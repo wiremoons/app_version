@@ -11,6 +11,14 @@ Executing on computer 'borrmoons' with 'macOS Unknown (build 22F66, kernel 22.5.
 System information: [ RAM: 8192Gb | CPU: ARM64 | Cores: 8 ].
 ```
 
+Another example below of `app_version` output when run on a *Raspberry Pi4B*:
+```
+'app_version' is version 'v0.2.1' built in 'Release' mode.
+Built on: 'Sun 02 Jul 2023 @ 11:48:02 BST' with Odin compiler: 'dev-2023-06'.
+Executing on computer 'pi4mobi' with ', Linux 5.15.0-1029-raspi'.
+System information: [ RAM: 7807Gb | CPU: ARM64 | Cores: 4 ].
+```
+
 ## How to include this package in your Odin project
 
 The inclusion of `app_version` in you own project is easily performed by just adding the code from this repo to you own project. The `app_version` code is a *Odin package* to be used by your main program. The recommended approach is to add `app_version` as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules). The purpose of *submodules* is to let one project clone another different Git repository into that project, and still keep the commits separate.
