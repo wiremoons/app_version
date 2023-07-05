@@ -11,12 +11,22 @@ Executing on computer 'borrmoons' with 'macOS Unknown (build 22F66, kernel 22.5.
 System information: [ RAM: 8192Gb | CPU: ARM64 | Cores: 8 ].
 ```
 
-Another example below of `app_version` output when run on a *Raspberry Pi4B*:
+Below is an example of `app_version` output when run on a *Raspberry Pi4B*:
 ```
 'app_version' is version 'v0.2.1' built in 'Release' mode.
 Built on: 'Sun 02 Jul 2023 @ 11:48:02 BST' with Odin compiler: 'dev-2023-06'.
 Executing on computer 'pi4mobi' with ', Linux 5.15.0-1029-raspi'.
 System information: [ RAM: 7807Gb | CPU: ARM64 | Cores: 4 ].
+```
+
+Below is an example of `app_version` output when run on a *Windows 11*:
+```
+'tripass.exe' is version 'v0.3.1' built in 'Release' mode.
+Built on: 'Wed Jul  5 21:07:26 GMTST 2023' with Odin compiler: 'dev-2023-07'.
+Executing on computer 'PAVIMOONS' with 'Windows 11 Professional (version: 22H2), build: 22621.1848'.
+System information: [ RAM: 32116Gb | CPU: AMD Ryzen 5 4600H with Radeon Graphics | Cores: 12 ]
+                    [ GPU #0: Advanced Micro Devices, Inc. model : 'AMD Radeon(TM) Graphics' RAM '512' ]
+                    [ GPU #1: NVIDIA model : 'NVIDIA GeForce GTX 1050' RAM '3072' ].
 ```
 
 ## How to include this package in your Odin project
