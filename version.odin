@@ -129,17 +129,17 @@ build_kind :: proc() -> string {
 	return ODIN_DEBUG ? "Debug" : "Release"
 }
 
-// Returns the computers hostname obtained from the environment variable 'HOSTNAME'
-// Checks if any hostname ends with '.local' and removes it - as occurs on macOS.
-// If the environment does not contain 'HOSTNAME' then return "UNKNOWN"
+// Returns the computers hostname obtained from the environment variable.
+// Checks for Operating System (OS): Linux/macOS use: 'HOSTNAME' and Windows
+// uses: 'COMPUTERNAME'.
+// Checks if any non Windows OS hostname ends with '.local' and removes it - as occurs on macOS.
+// If the environment does not contain 'HOSTNAME' or 'COMPUTERNAME' then return "UNKNOWN"
 @(private)
 hostname :: proc() -> string {
 	when ODIN_OS == .Windows {
 		host_id, ok := os.lookup_env("COMPUTERNAME")
 		if !ok do return "UNKNOWN"
-		idx := strings.index(host_id, ".local")
-		if idx == -1 do return host_id
-		return strings.cut(host_id, 0, idx)
+		return host_id
 	} else {
 		host_id, ok := os.lookup_env("HOSTNAME")
 		if !ok do return "UNKNOWN"
@@ -162,6 +162,7 @@ system_summary :: proc() -> string {
 	strings.write_string(&sb, cpu_kind())
 	strings.write_string(&sb, " | Cores: ")
 	strings.write_int(&sb, cpu_cores())
+	strings.write_string(&sb, " ]")
 	// include any GPU info if available
 	for gpu, i in info.gpus {
 		strings.write_string(&sb, "\n                    [ ")
@@ -172,7 +173,7 @@ system_summary :: proc() -> string {
 		strings.write_string(&sb, " model : '")
 		strings.write_string(&sb, gpu.model_name)
 		strings.write_string(&sb, "' RAM '")
-    		strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
+   		strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
 		strings.write_string(&sb, "'")
 		strings.write_string(&sb, " ]")
 	}

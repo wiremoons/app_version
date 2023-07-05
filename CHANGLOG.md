@@ -1,6 +1,7 @@
 ## v0.2.2
 - add 'build.bat' for Windows users
 - fix hostname look up for Windows platform
+- improve output when GPU info exists
 
 ## v0.2.1
 - reformat 'mod.pkg' to valid JSON due to errors with 'opm' cli publish attempts.
