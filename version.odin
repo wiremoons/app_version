@@ -134,11 +134,19 @@ build_kind :: proc() -> string {
 // If the environment does not contain 'HOSTNAME' then return "UNKNOWN"
 @(private)
 hostname :: proc() -> string {
-	host_id, ok := os.lookup_env("HOSTNAME")
-	if !ok do return "UNKNOWN"
-	idx := strings.index(host_id, ".local")
-	if idx == -1 do return host_id
-	return strings.cut(host_id, 0, idx)
+	when ODIN_OS == .Windows {
+		host_id, ok := os.lookup_env("COMPUTERNAME")
+		if !ok do return "UNKNOWN"
+		idx := strings.index(host_id, ".local")
+		if idx == -1 do return host_id
+		return strings.cut(host_id, 0, idx)
+	} else {
+		host_id, ok := os.lookup_env("HOSTNAME")
+		if !ok do return "UNKNOWN"
+		idx := strings.index(host_id, ".local")
+		if idx == -1 do return host_id
+		return strings.cut(host_id, 0, idx)
+	}
 }
 
 // Returns a string built from various Odin system information procedures.
@@ -155,17 +163,18 @@ system_summary :: proc() -> string {
 	strings.write_string(&sb, " | Cores: ")
 	strings.write_int(&sb, cpu_cores())
 	// include any GPU info if available
-  for gpu, i in info.gpus {
-		strings.write_string(&sb," | GPU #")
+	for gpu, i in info.gpus {
+		strings.write_string(&sb, "\n                    [ ")
+		strings.write_string(&sb,"GPU #")
 		strings.write_int(&sb, i)
 		strings.write_string(&sb, ": ")
-    strings.write_string(&sb, gpu.vendor_name)
-    strings.write_string(&sb, " model : '")
-    strings.write_string(&sb, gpu.model_name)
+		strings.write_string(&sb, gpu.vendor_name)
+		strings.write_string(&sb, " model : '")
+		strings.write_string(&sb, gpu.model_name)
 		strings.write_string(&sb, "' RAM '")
-    strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
+    		strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
 		strings.write_string(&sb, "'")
+		strings.write_string(&sb, " ]")
 	}
-	strings.write_string(&sb, " ]")
 	return strings.clone(strings.to_string(sb))
 }
