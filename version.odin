@@ -1,10 +1,10 @@
 /*
-			Package generates and optionally displays version information for an application.
-			Created: Mon 29 May 2023
-			Copyright (c) 2023 Simon Rowe.
-			MIT License.
-			Source code: https://github.com/wiremoons/app_version.git
-      Version: see projects 'VERSION' file.
+	Package generates and optionally displays version information for an application.
+	Created: Mon 29 May 2023
+	Copyright (c) 2023 Simon Rowe.
+	MIT License.
+	Source code: https://github.com/wiremoons/app_version.git
+	Version: see projects 'VERSION' file.
 */
 
 package app_version
@@ -27,7 +27,6 @@ BUILD_TIME :: #config(BUILDTS, "UNKNOWN")
 load_package_VERSION := #load("VERSION", string) or_else ""
 //NOTE(Simon): assumes this package is in a sub directory one below ODIN_BUILD_PROJECT_NAME
 load_application_VERSION := #load("../VERSION", string) or_else ""
-
 /*
 		PUBLIC PROCEDURES
 */
@@ -43,6 +42,8 @@ load_application_VERSION := #load("../VERSION", string) or_else ""
 version_string :: proc() -> string {
 	sb := strings.builder_make()
 	defer strings.builder_destroy(&sb)
+	// defer delete(load_application_VERSION)
+	// defer delete(load_package_VERSION)
 	strings.write_string(&sb, "\n'")
 	strings.write_string(&sb, application_name())
 	strings.write_string(&sb, "' is version '")
@@ -67,7 +68,9 @@ version_string :: proc() -> string {
 
 // Print out a copy of the version string constructed by 'version_string' proc.
 version_show :: proc() {
+	// version_data : string = version_string()
 	fmt.print(version_string())
+	// delete(version_data)
 }
 
 /*

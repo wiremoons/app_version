@@ -1,3 +1,7 @@
+## v0.2.3
+- cosmetic update to header comments formating in source file `version.odin`.
+- code checks for memeory handling - commented out while `valgrind` checks are used.
+
 ## v0.2.2
 - add 'build.bat' for Windows users
 - fix hostname look up for Windows platform
