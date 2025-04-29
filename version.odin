@@ -40,12 +40,16 @@ load_application_VERSION := #load("../VERSION", string) or_else ""
 //		System information: [ RAM: 8192Gb | CPU: ARM64 | Cores: 8 ].
 
 version_string :: proc() -> string {
-	sb := strings.builder_make()
+	// collect supporting version information
+	app_name_str := application_name()
+	defer delete_string(app_name_str)
+	sys_sum_str := system_summary()
+	defer delete_string(sys_sum_str)
+	// build the complete version output data needed
+	sb := strings.builder_make(context.temp_allocator)
 	defer strings.builder_destroy(&sb)
-	// defer delete(load_application_VERSION)
-	// defer delete(load_package_VERSION)
 	strings.write_string(&sb, "\n'")
-	strings.write_string(&sb, application_name())
+	strings.write_string(&sb, app_name_str)
 	strings.write_string(&sb, "' is version '")
 	strings.write_string(&sb, application_version())
 	strings.write_string(&sb, "' built in '")
@@ -61,16 +65,17 @@ version_string :: proc() -> string {
 	strings.write_string(&sb, "' with '")
 	strings.write_string(&sb, os_info())
 	strings.write_string(&sb, "'.\n")
-	strings.write_string(&sb, system_summary())
+	strings.write_string(&sb, sys_sum_str)
 	strings.write_string(&sb, ".\n")
 	return strings.clone(strings.to_string(sb))
 }
 
 // Print out a copy of the version string constructed by 'version_string' proc.
 version_show :: proc() {
-	// version_data : string = version_string()
-	fmt.print(version_string())
-	// delete(version_data)
+	version_data := version_string()
+	fmt.print(version_data)
+	// free_all(context.temp_allocator)
+	delete_string(version_data)
 }
 
 /*
@@ -119,11 +124,10 @@ cpu_kind :: proc() -> string {
 // Returns the Odin Operating System (OS) command line arguments extracted application name.
 @(private)
 application_name :: proc() -> string {
-	app_name := os.args[0]
-	if len(app_name) < 1 {
+	if len(os.args[0]) < 1 {
 		return ""
 	}
-	return filepath.base(app_name)
+	return strings.clone(filepath.base(os.args[0]))
 }
 
 // Returns the Odin compiler build type performed when the application was created.
@@ -156,7 +160,7 @@ hostname :: proc() -> string {
 // Include any GPU data if it also exists.
 @(private)
 system_summary :: proc() -> string {
-	sb := strings.builder_make()
+	sb := strings.builder_make(context.temp_allocator)
 	defer strings.builder_destroy(&sb)
 	strings.write_string(&sb, "System information: ")
 	strings.write_string(&sb, "[ RAM: ")

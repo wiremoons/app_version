@@ -1,6 +1,10 @@
+## v0.2.4
+- Use `context.temp_allocator` for temporary string builder proc usage. 
+- Fix memory leak errors with use of `delete_string` for proc returned cloned strings.
+
 ## v0.2.3
-- cosmetic update to header comments formating in source file `version.odin`.
-- code checks for memeory handling - commented out while `valgrind` checks are used.
+- cosmetic update to header comments formatting in source file `version.odin`.
+- code checks for memory handling - commented out while `valgrind` checks are used.
 
 ## v0.2.2
 - add 'build.bat' for Windows users
@@ -12,7 +16,7 @@
 
 ## v0.2.0
 - add header info to 'main.odin' example usage file.
-- add addtional comments to 'main.odin' to help with example usage.
+- add additional comments to 'main.odin' to help with example usage.
 - update 'VERSION' file to 'v0.2.0'
 - add 'mod.pkg' to support [Odin Package Manager](https://pkg-odin.org/)
 - add '-strict-style' to 'build.sh' script.
