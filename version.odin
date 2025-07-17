@@ -118,7 +118,7 @@ sys_ram :: proc() -> int {
 // Returns the Odin System Information (sys/info) computer CPU architecture name.
 @(private)
 cpu_kind :: proc() -> string {
-	return info.cpu_name.? or_else "UNKNOWN"
+	return info.cpu.name.? or_else "UNKNOWN"
 }
 
 // Returns the Odin Operating System (OS) command line arguments extracted application name.

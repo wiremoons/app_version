@@ -1,6 +1,11 @@
 ## v0.2.4
 - Use `context.temp_allocator` for temporary string builder proc usage. 
 - Fix memory leak errors with use of `delete_string` for proc returned cloned strings.
+- ensure project version stated matches in `mod.pkg` and `VERSION` files.
+- minor adjustments to `README.md` to improve clarity in use instructions.
+- fix in `version.odin` as Odin procedure call changed from `info.cpu_name` to `info.cpu.name`.
+- Correct spelling for file name: `CHANGELOG.md` (ie was missing 'E').
+- Update copyright years stated in `LICENSE` file.
 
 ## v0.2.3
 - cosmetic update to header comments formatting in source file `version.odin`.
