@@ -12,8 +12,8 @@ package app_version
 import "core:fmt"
 import "core:os"
 import "core:path/filepath"
-import "core:sys/info"
 import "core:strings"
+import "core:sys/info"
 
 // To provide the compiled date and time use a '-define:' when building the application
 // The shell `date` format can be changed as required.
@@ -31,6 +31,7 @@ load_application_VERSION := #load("../VERSION", string) or_else ""
 		PUBLIC PROCEDURES
 */
 
+//
 // Build the version output using a string buffer constructed from the private procedures
 // in this package. Return a cloned string before the string buffer is destroyed.
 // Example output:
@@ -173,14 +174,14 @@ system_summary :: proc() -> string {
 	// include any GPU info if available
 	for gpu, i in info.gpus {
 		strings.write_string(&sb, "\n                    [ ")
-		strings.write_string(&sb,"GPU #")
+		strings.write_string(&sb, "GPU #")
 		strings.write_int(&sb, i)
 		strings.write_string(&sb, ": ")
 		strings.write_string(&sb, gpu.vendor_name)
 		strings.write_string(&sb, " model : '")
 		strings.write_string(&sb, gpu.model_name)
 		strings.write_string(&sb, "' RAM '")
-   		strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
+		strings.write_int(&sb, gpu.total_ram / 1024 / 1024)
 		strings.write_string(&sb, "'")
 		strings.write_string(&sb, " ]")
 	}
